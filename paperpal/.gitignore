@@ -1,0 +1,38 @@
+# --- Python / build ---
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# --- Virtual env / tools ---
+.venv/
+.env
+.env.*      # any env variants
+.python-version
+.ipynb_checkpoints/
+
+# --- Editors / OS ---
+.DS_Store
+.vscode/
+.idea/
+
+# --- Project data (store locally; don’t commit) ---
+data/**
+!data/.gitkeep
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+
+# --- Logs / runs ---
+*.log
+logs/
+wandb/
+mlruns/
+
+# --- Cache / indexes ---
+.cache/
+.faiss/
