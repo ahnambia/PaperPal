@@ -1,0 +1,109 @@
+# ========================================
+# PaperPal Training Configuration
+# ========================================
+
+# Model Configuration
+model:
+  name: "facebook/bart-base"  # Options: facebook/bart-base, facebook/bart-large, t5-base
+  cache_dir: "./models/cache"
+  
+# Tokenizer Settings
+tokenizer:
+  max_input_length: 512      # Max tokens for input (abstract)
+  max_target_length: 128     # Max tokens for summary
+  truncation: true
+  padding: "max_length"
+
+# Training Hyperparameters (CPU-Optimized)
+training:
+  output_dir: "./models/checkpoints"
+  num_train_epochs: 3
+  per_device_train_batch_size: 2  # Small for CPU
+  per_device_eval_batch_size: 4
+  gradient_accumulation_steps: 8   # Effective batch size = 2 * 8 = 16
+  learning_rate: 3.0e-5
+  weight_decay: 0.01
+  warmup_steps: 500
+  
+  # Optimization
+  fp16: false  # Set to true if you have a GPU with fp16 support
+  gradient_checkpointing: true
+  optim: "adamw_torch"
+  
+  # Evaluation & Saving
+  evaluation_strategy: "steps"
+  eval_steps: 500
+  save_strategy: "steps"
+  save_steps: 500
+  save_total_limit: 3  # Keep only 3 best checkpoints
+  load_best_model_at_end: true
+  metric_for_best_model: "rouge1"
+  greater_is_better: true
+  
+  # Logging
+  logging_dir: "./logs"
+  logging_steps: 100
+  report_to: ["wandb", "tensorboard"]
+  
+  # Early Stopping
+  early_stopping_patience: 3
+  early_stopping_threshold: 0.001
+
+# Multi-Task Learning
+tasks:
+  summarization:
+    enabled: true
+    weight: 1.0
+    target_column: "summary"
+  
+  method_extraction:
+    enabled: true
+    weight: 0.5
+    target_column: "methods"
+    prefix: "extract methods: "
+  
+  result_extraction:
+    enabled: true
+    weight: 0.5
+    target_column: "results"
+    prefix: "extract results: "
+
+# Silver Summary Generation
+silver_summaries:
+  model: "facebook/bart-base"  # Use base model for generation
+  max_length: 128
+  min_length: 30
+  num_beams: 4
+  length_penalty: 2.0
+  early_stopping: true
+  no_repeat_ngram_size: 3
+  
+  # Quality Filters
+  min_summary_words: 10
+  max_summary_words: 100
+
+# Data Processing
+data:
+  train_file: "data/processed/papers_train.jsonl"
+  val_file: "data/processed/papers_val.jsonl"
+  test_file: "data/processed/papers_test.jsonl"
+  num_workers: 2  # For DataLoader
+  preprocessing_num_workers: 4
+
+# Weights & Biases
+wandb:
+  project: "paperpal"
+  entity: null  # Set to your W&B username
+  name: null    # Auto-generated run name
+  tags: ["bart-base", "summarization", "multi-task"]
+  notes: "Fine-tuning BART for research paper summarization"
+
+# Evaluation Metrics
+metrics:
+  - "rouge1"
+  - "rouge2"
+  - "rougeL"
+  - "rougeLsum"
+  
+# Reproducibility
+seed: 42
