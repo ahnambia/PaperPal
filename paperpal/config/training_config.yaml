@@ -93,7 +93,7 @@ data:
 # Weights & Biases
 wandb:
   project: "paperpal"
-  entity: null  # Set to your W&B username
+  entity: ahnambia  # Set to your W&B username
   name: null    # Auto-generated run name
   tags: ["bart-base", "summarization", "multi-task"]
   notes: "Fine-tuning BART for research paper summarization"
