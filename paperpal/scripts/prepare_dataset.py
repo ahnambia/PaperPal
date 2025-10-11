@@ -2,7 +2,13 @@
 Why it matters: Repeatable, parameterized prep—easy to re-run with different thresholds/splits.
 '''
 
+import sys
+from pathlib import Path
 import argparse
+
+# Add src to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
 from src.paperpal.config import Config
 from src.paperpal.data_prep import prepare_dataset
 

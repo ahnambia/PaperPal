@@ -9,12 +9,16 @@ Fetches results via arxiv_client
 Writes a timestamped JSONL to data/raw/
 
 Why it matters:
-Creates a reproducible “raw snapshot” you can re-run any time. It is the single source for downstream dataset prep.
+Creates a reproducible "raw snapshot" you can re-run any time. It is the single source for downstream dataset prep.
 '''
 
+import sys
 from pathlib import Path
 from datetime import datetime
 import argparse
+
+# Add src to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.paperpal.config import Config
 from src.paperpal.utils.io import ensure_dirs, write_jsonl
