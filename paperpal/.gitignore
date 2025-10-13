@@ -36,3 +36,6 @@ mlruns/
 # --- Cache / indexes ---
 .cache/
 .faiss/
+
+# --- Models ---
+models/

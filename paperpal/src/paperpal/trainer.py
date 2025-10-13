@@ -277,7 +277,7 @@ def create_training_args(
         optim=training_cfg.get("optim", "adamw_torch"),
         
         # Evaluation & Saving
-        evaluation_strategy=training_cfg.get("evaluation_strategy", "steps"),
+        eval_strategy=training_cfg.get("evaluation_strategy", "steps"),
         eval_steps=training_cfg.get("eval_steps", 500),
         save_strategy=training_cfg.get("save_strategy", "steps"),
         save_steps=training_cfg.get("save_steps", 500),
@@ -300,7 +300,7 @@ def create_training_args(
         
         # Other
         seed=config.get("seed", 42),
-        dataloader_num_workers=config.get("data", {}).get("num_workers", 2),
+        dataloader_num_workers=0,  # macOS compatibility
         remove_unused_columns=False,  # Important for custom datasets
     )
     

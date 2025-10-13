@@ -194,10 +194,16 @@ def main():
     cfg = Config()
     
     # Determine dataset paths (use files with summaries if available)
-    train_file = Path(cfg.processed_dir) / "papers_train_with_summaries.jsonl"
-    val_file = Path(cfg.processed_dir) / "papers_val_with_summaries.jsonl"
-    test_file = Path(cfg.processed_dir) / "papers_test_with_summaries.jsonl"
+    train_file = Path(cfg.processed_dir) / "papers_train_filtered.jsonl"
+    val_file = Path(cfg.processed_dir) / "papers_val_filtered.jsonl"
+    test_file = Path(cfg.processed_dir) / "papers_test_filtered.jsonl"
     
+    # Fallback to with_summaries if filtered doesn't exist
+    if not train_file.exists():
+        train_file = Path(cfg.processed_dir) / "papers_train_with_summaries.jsonl"
+        val_file = Path(cfg.processed_dir) / "papers_val_with_summaries.jsonl"
+        test_file = Path(cfg.processed_dir) / "papers_test_with_summaries.jsonl"
+        
     # Fallback to original files if summaries not generated yet
     if not train_file.exists():
         console.print("[yellow]Warning: Summaries not found. Using original files.")
