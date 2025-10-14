@@ -18,9 +18,9 @@ tokenizer:
 training:
   output_dir: "./models/checkpoints"
   num_train_epochs: 3
-  per_device_train_batch_size: 2  # Small for CPU
+  per_device_train_batch_size: 1  # Small for CPU
   per_device_eval_batch_size: 4
-  gradient_accumulation_steps: 8   # Effective batch size = 2 * 8 = 16
+  gradient_accumulation_steps: 16   # Effective batch size = 2 * 8 = 16
   learning_rate: 3.0e-5
   weight_decay: 0.01
   warmup_steps: 500
@@ -43,7 +43,7 @@ training:
   # Logging
   logging_dir: "./logs"
   logging_steps: 100
-  report_to: ["wandb", "tensorboard"]
+  report_to: ["tensorboard"]
   
   # Early Stopping
   early_stopping_patience: 3

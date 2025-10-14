@@ -277,7 +277,7 @@ def create_training_args(
         optim=training_cfg.get("optim", "adamw_torch"),
         
         # Evaluation & Saving
-        eval_strategy=training_cfg.get("evaluation_strategy", "steps"),
+        evaluation_strategy=training_cfg.get("evaluation_strategy", "steps"),
         eval_steps=training_cfg.get("eval_steps", 500),
         save_strategy=training_cfg.get("save_strategy", "steps"),
         save_steps=training_cfg.get("save_steps", 500),

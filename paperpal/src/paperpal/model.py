@@ -63,7 +63,7 @@ class PaperPalModel:
             load_model: Whether to load the model immediately
         """
         self.config = config
-        self.device = torch.device(config.device)
+        self.device = torch.device("cpu")  # Force CPU
         
         # Initialize as None
         self.tokenizer: Optional[PreTrainedTokenizer] = None

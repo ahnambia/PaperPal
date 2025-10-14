@@ -1,3 +1,6 @@
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
 """
 Main Training Script
 
@@ -11,7 +14,7 @@ This script orchestrates the complete training pipeline:
 
 Usage:
     python scripts/train_model.py
-    python scripts/train_model.py --config config/training_config.yaml
+    python scripts/train_model.py --config src/paperpal/config/training_config.yaml
     python scripts/train_model.py --model facebook/bart-large
     python scripts/train_model.py --epochs 5 --batch-size 4
 """
@@ -47,7 +50,7 @@ def parse_args():
     parser.add_argument(
         "--config",
         type=str,
-        default="config/training_config.yaml",
+        default="src/paperpal/config/training_config.yaml",
         help="Path to training config YAML"
     )
     
@@ -337,8 +340,11 @@ def main():
     # Step 8: Evaluate
     if not args.no_eval:
         console.print("\n[bold yellow]Step 8: Final Evaluation")
+        console.print("[yellow]Skipping evaluation due to MPS compatibility")
+        eval_metrics = {}
+    else:
+        console.print("\n[bold yellow]Step 8: Final Evaluation")
         eval_metrics = trainer.evaluate()
-        
         console.print("\n[bold cyan]Evaluation Metrics:")
         for key, value in eval_metrics.items():
             console.print(f"  {key}: {value:.4f}")

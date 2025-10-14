@@ -91,7 +91,7 @@ def parse_args():
     parser.add_argument(
         "--config",
         type=str,
-        default="config/training_config.yaml",
+        default="src/paperpal/config/training_config.yaml",
         help="Path to training config file"
     )
     
