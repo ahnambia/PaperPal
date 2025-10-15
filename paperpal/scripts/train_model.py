@@ -197,9 +197,9 @@ def main():
     cfg = Config()
     
     # Determine dataset paths (use files with summaries if available)
-    train_file = Path(cfg.processed_dir) / "papers_train_filtered.jsonl"
-    val_file = Path(cfg.processed_dir) / "papers_val_filtered.jsonl"
-    test_file = Path(cfg.processed_dir) / "papers_test_filtered.jsonl"
+    train_file = Path(cfg.processed_dir) / "papers_train_small.jsonl"
+    val_file = Path(cfg.processed_dir) / "papers_val_small.jsonl"
+    test_file = Path(cfg.processed_dir) / "papers_test_small.jsonl"
     
     # Fallback to with_summaries if filtered doesn't exist
     if not train_file.exists():
@@ -342,12 +342,6 @@ def main():
         console.print("\n[bold yellow]Step 8: Final Evaluation")
         console.print("[yellow]Skipping evaluation due to MPS compatibility")
         eval_metrics = {}
-    else:
-        console.print("\n[bold yellow]Step 8: Final Evaluation")
-        eval_metrics = trainer.evaluate()
-        console.print("\n[bold cyan]Evaluation Metrics:")
-        for key, value in eval_metrics.items():
-            console.print(f"  {key}: {value:.4f}")
     
     # Step 9: Save final model
     console.print("\n[bold yellow]Step 9: Saving Final Model")
