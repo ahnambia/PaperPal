@@ -131,7 +131,7 @@ jupyter notebook notebooks/evaluate_model.ipynb
 
 ### Training Configuration
 
-Edit `config/training_config.yaml` to customize:
+Edit `src/paperpal/config/training_config.yaml` to customize:
 - Model selection (BART-base, BART-large, T5)
 - Training hyperparameters (epochs, batch size, learning rate)
 - Batch size and gradient accumulation
@@ -151,8 +151,6 @@ paperpal/
 ├── .env.example
 ├── .gitignore
 │
-├── config/
-│   └── training_config.yaml    # Training configuration
 │
 ├── data/
 │   ├── raw/                     # Raw arXiv downloads
@@ -178,6 +176,8 @@ paperpal/
 │       ├── silver_summaries.py  # Silver label generation
 │       ├── model.py             # Model wrapper
 │       ├── trainer.py           # Training pipeline
+│       ├── config/
+│       │   └── training_config.yaml  # Training configuration
 │       └── utils/
 │           ├── io.py            # I/O utilities
 │           └── text.py          # Text processing
@@ -253,7 +253,7 @@ wandb login
 # Your runs will appear at: https://wandb.ai/<username>/paperpal
 ```
 
-Edit `config/training_config.yaml`:
+Edit `src/paperpal/config/training_config.yaml`:
 ```yaml
 wandb:
   project: "paperpal"
@@ -367,7 +367,7 @@ pip install -r requirements.txt
 **3. macOS MPS Multiprocessing Error**
 ```bash
 # Fix: Already handled in config (dataloader_num_workers: 0)
-# If you encounter issues, verify config/training_config.yaml has:
+# If you encounter issues, verify src/paperpal/config/training_config.yaml has:
 # dataloader_num_workers: 0
 ```
 
@@ -385,7 +385,7 @@ python scripts/filter_summaries.py
 
 **6. Out of Memory**
 ```bash
-# Fix: Reduce batch size in config/training_config.yaml
+# Fix: Reduce batch size in src/paperpal/config/training_config.yaml
 per_device_train_batch_size: 1
 gradient_accumulation_steps: 16
 ```
@@ -466,4 +466,5 @@ Contributions are welcome! Areas for improvement:
 | **Languages Used** | Python, YAML, Markdown |
 | **Tools Integrated** | 10+ (PyTorch, Transformers, W&B, etc.) |
 
+yo
 ---
