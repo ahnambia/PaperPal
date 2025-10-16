@@ -12,7 +12,7 @@ Key Features:
 - Progress tracking with tqdm
 
 Why Silver Summaries?
-- Better quality than extractive (first N sentences)
+- Better quality than extractive (retrieves the first N sentences)
 - Creates self-distillation effect (BART learns from BART)
 - Scalable to any dataset size
 """
