@@ -9,7 +9,7 @@ This module provides a comprehensive training pipeline with:
 - CPU-optimized settings
 
 Key Features:
-- Automatic metric computation (ROUGE scores)
+- Automatic metric computation (doles out ROUGE scores)
 - Early stopping
 - Model checkpointing
 - Learning rate scheduling
