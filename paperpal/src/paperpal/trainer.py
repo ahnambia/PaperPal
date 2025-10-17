@@ -13,7 +13,7 @@ Key Features:
 - Early stopping
 - Create Model checkpoints
 - Scheduling of learning rate 
-- Progress tracking
+- Tracking of Progess during run time
 """
 
 from __future__ import annotations
