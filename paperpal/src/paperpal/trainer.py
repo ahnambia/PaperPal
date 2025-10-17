@@ -3,7 +3,7 @@ Training Module with W&B Integration
 
 This module provides a comprehensive training pipeline with:
 - Hugging Face Trainer integration
-- Weights & Biases logging
+- Logging of Weights & Biases
 - Custom callbacks for monitoring
 - Multi-task learning support
 - CPU-optimized settings
