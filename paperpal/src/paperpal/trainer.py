@@ -12,7 +12,7 @@ Key Features:
 - Automatic metric computation (doles out ROUGE scores)
 - Early stopping
 - Create Model checkpoints
-- Learning rate 
+- Scheduling of learning rate 
 - Progress tracking
 """
 
