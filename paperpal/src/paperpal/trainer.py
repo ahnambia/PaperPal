@@ -11,8 +11,8 @@ This module provides a comprehensive training pipeline with:
 Key Features:
 - Automatic metric computation (doles out ROUGE scores)
 - Early stopping
-- Model checkpointing
-- Learning rate scheduling
+- Create Model checkpoints
+- Learning rate 
 - Progress tracking
 """
 
