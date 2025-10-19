@@ -19,7 +19,7 @@ Key Features:
 from __future__ import annotations
 from typing import Dict, Any, Optional, List
 from pathlib import Path
-import numpy 
+import numpy as np
 
 import torch
 from datasets import Dataset, DatasetDict
