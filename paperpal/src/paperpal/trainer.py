@@ -31,7 +31,6 @@ from transformers import (
 )
 import evaluate
 
-# Optional W&B import
 try:
     import wandb
     WANDB_AVAILABLE = True
